@@ -14,7 +14,13 @@ namespace cpp2 {
     std::string ClientConnection::waitForIncomingMessage() {
         std::string message;
         getline(stream, message);
+
+        if (stream.fail()) {
+            throw std::overflow_error("connection interrupted");
+        }
+
         message.erase(message.end() - 1); // remove '\r'
+
         return message;
     }
 

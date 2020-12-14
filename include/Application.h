@@ -1,6 +1,8 @@
 #ifndef CPP2SERVER_APPLICATION_H
 #define CPP2SERVER_APPLICATION_H
 
+#include "Server.h"
+
 namespace cpp2 {
     class Application {
     public:
@@ -10,10 +12,8 @@ namespace cpp2 {
 
         int run() const;
 
-        void handleClientConnection() const;
-
     private:
-        const int serverPort;
+        Server server;
     };
 }
 
