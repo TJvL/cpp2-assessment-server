@@ -6,11 +6,11 @@
 namespace cpp2 {
     class UploadFileCommand : public AbstractCommand {
     public:
-        explicit UploadFileCommand(cpp2::ClientConnection& clientConnection);
+        explicit UploadFileCommand(ClientConnection& clientConnection, FileSystemManager &syncManager);
 
         ~UploadFileCommand() override = default;
 
-        void execute() override;
+        bool execute() override;
     };
 }
 

@@ -2,16 +2,15 @@
 #define CPP2SERVER_SERVERINFORMATIONCOMMAND_H
 
 #include "../AbstractCommand.h"
-#include "../../ClientConnection.h"
 
 namespace cpp2 {
     class ServerInformationCommand : public AbstractCommand {
     public:
-        explicit ServerInformationCommand(cpp2::ClientConnection& clientConnection);
+        explicit ServerInformationCommand(ClientConnection& clientConnection, FileSystemManager &syncManager);
 
         ~ServerInformationCommand() override = default;
 
-        void execute() override;
+        bool execute() override;
     };
 }
 

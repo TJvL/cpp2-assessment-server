@@ -1,5 +1,5 @@
-#include "../include/ClientConnection.h"
-#include "../include/Constants.h"
+#include "../../include/communication/ClientConnection.h"
+#include "../../include/Constants.h"
 
 namespace cpp2 {
     ClientConnection::ClientConnection(int listenPort)
@@ -16,7 +16,7 @@ namespace cpp2 {
         getline(stream, message);
 
         if (stream.fail()) {
-            throw std::overflow_error("connection interrupted");
+            throw std::runtime_error("connection interrupted");
         }
 
         message.erase(message.end() - 1); // remove '\r'
@@ -25,6 +25,14 @@ namespace cpp2 {
     }
 
     void ClientConnection::sentOutgoingMessage(const std::string &message) {
-        stream << message << crlf;
+        stream << message << RETURN_NEW_LINE;
+    }
+
+    std::istream& ClientConnection::getIncomingStream() {
+        return stream;
+    }
+
+    void ClientConnection::pipeStreamTillEnd(std::istream &inputStream) {
+        stream << inputStream.rdbuf();
     }
 }

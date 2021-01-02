@@ -14,21 +14,22 @@ namespace cpp2 {
                                      {"DIR",   CommandName::LIST_DIRECTORY},
                                      {"GET",   CommandName::DOWNLOAD_FILE},
                                      {"PUT",   CommandName::UPLOAD_FILE},
-                                     {"REN",   CommandName::RENAME_FILE},
-                                     {"DEL",   CommandName::DELETE_FILE},
+                                     {"REN",   CommandName::RENAME},
+                                     {"DEL",   CommandName::DELETE},
                                      {"MKDIR", CommandName::MAKE_DIRECTORY},
-                                     {"QUIT",  CommandName::CLOSE_CONNECTION},
+                                     {"QUIT",  CommandName::CLOSE_CONNECTION}
                              }) {};
 
         ~CommandMapper() = default;
 
-        const CommandName& getCommandName (const std::string& name) const {
+        const CommandName &getCommandName(const std::string &name) const {
             try {
                 return commandMap.at(name);
             } catch (const std::out_of_range &error) {
-                throw std::runtime_error("the name: " + name + " has no mapped command name");
+                throw std::logic_error{"the name: " + name + " has no mapped command name"};
             }
         }
+
     private:
         const std::unordered_map<std::string, CommandName> commandMap;
     };

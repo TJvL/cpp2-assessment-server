@@ -14,6 +14,10 @@ namespace cpp2 {
 
         void sentOutgoingMessage(const std::string &message);
 
+        std::istream & getIncomingStream();
+
+        void pipeStreamTillEnd(std::istream& inputStream);
+
     private:
         asio::io_context ioContext;
         asio::ip::tcp::acceptor acceptor;

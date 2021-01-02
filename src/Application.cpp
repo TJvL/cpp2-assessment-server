@@ -1,9 +1,10 @@
 #include <iostream>
 #include "../include/Application.h"
+#include "../include/Constants.h"
 
 namespace cpp2 {
-    Application::Application(const int serverPort)
-            : server(serverPort) {}
+    Application::Application(const int port, const std::string &syncDirectoryName)
+            : server(port, syncDirectoryName) {}
 
     int Application::run() const {
         auto result = EXIT_SUCCESS;
@@ -11,11 +12,11 @@ namespace cpp2 {
         while (running) {
             try {
                 server.handleClientConnection();
-            } catch(const std::runtime_error &error) {
-                std::cerr << "server: " << error.what() << '\n';
+            } catch (const std::runtime_error &error) {
+                std::cout << "error: " << error.what() << NEW_LINE;
                 continue;
             } catch (const std::exception &exception) {
-                std::cerr << "server: " << exception.what() << '\n';
+                std::cout << "fatal error: " << exception.what() << NEW_LINE;
                 result = EXIT_FAILURE;
                 running = false;
             }

@@ -10,8 +10,8 @@ find_package(Threads REQUIRED)
 set(INCLUDES
         include/Constants.h
         include/Application.h
-        include/Server.h
-        include/ClientConnection.h
+        include/communication/Server.h
+        include/communication/ClientConnection.h
         include/commands/AbstractCommand.h
         include/commands/CommandName.h
         include/commands/CommandFactory.h
@@ -20,26 +20,31 @@ set(INCLUDES
         include/commands/implementations/ListDirectoryCommand.h
         include/commands/implementations/DownloadFileCommand.h
         include/commands/implementations/UploadFileCommand.h
-        include/commands/implementations/RenameFileCommand.h
-        include/commands/implementations/DeleteFileCommand.h
+        include/commands/implementations/RenameCommand.h
+        include/commands/implementations/DeleteCommand.h
         include/commands/implementations/MakeDirectoryCommand.h
         include/commands/implementations/CloseConnectionCommand.h
+        include/filesystem/FileSystemManager.h
+        include/filesystem/FileInfo.h
+        include/filesystem/FileType.h
+        include/filesystem/FileTypeMapper.h
         )
 
 set(SOURCE_FILES
         src/Main.cpp
         src/Application.cpp
-        src/Server.cpp
-        src/ClientConnection.cpp
+        src/communication/Server.cpp
+        src/communication/ClientConnection.cpp
         src/commands/CommandFactory.cpp
         src/commands/implementations/ServerInformationCommand.cpp
         src/commands/implementations/ListDirectoryCommand.cpp
         src/commands/implementations/DownloadFileCommand.cpp
         src/commands/implementations/UploadFileCommand.cpp
-        src/commands/implementations/RenameFileCommand.cpp
-        src/commands/implementations/DeleteFileCommand.cpp
+        src/commands/implementations/RenameCommand.cpp
+        src/commands/implementations/DeleteCommand.cpp
         src/commands/implementations/MakeDirectoryCommand.cpp
         src/commands/implementations/CloseConnectionCommand.cpp
+        src/filesystem/FileSystemManager.cpp
         )
 
 add_executable(Cpp2Server

@@ -8,8 +8,8 @@ namespace cpp2 {
         MAKE_DIRECTORY,
         DOWNLOAD_FILE,
         UPLOAD_FILE,
-        RENAME_FILE,
-        DELETE_FILE,
+        RENAME,
+        DELETE,
         CLOSE_CONNECTION
     };
 }

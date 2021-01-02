@@ -2,10 +2,11 @@
 #include "../../../include/Constants.h"
 
 namespace cpp2 {
-    ServerInformationCommand::ServerInformationCommand(cpp2::ClientConnection &clientConnection)
-            : AbstractCommand(clientConnection) {}
+    ServerInformationCommand::ServerInformationCommand(cpp2::ClientConnection &clientConnection, FileSystemManager &syncManager)
+            : AbstractCommand(clientConnection, syncManager) {}
 
-    void ServerInformationCommand::execute() {
-        clientConnection.sentOutgoingMessage(std::string("AvanSync server ") + version + ", copyright (c) 2020 Thomas van Leeuwen.");
+    bool ServerInformationCommand::execute() {
+        clientConnection.sentOutgoingMessage(INFO_RESPONSE);
+        return true;
     }
 }

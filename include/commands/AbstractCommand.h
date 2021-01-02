@@ -2,19 +2,23 @@
 #define CPP2SERVER_ABSTRACTCOMMAND_H
 
 #include <type_traits>
-#include "../ClientConnection.h"
+#include "../communication/ClientConnection.h"
+#include "../filesystem/FileSystemManager.h"
 
 namespace cpp2 {
     class AbstractCommand {
     public:
         virtual ~AbstractCommand() = default;
 
-        virtual void execute() = 0;
+        virtual bool execute() = 0;
 
     protected:
-        AbstractCommand(ClientConnection& clientConnection) : clientConnection(clientConnection) {};
+        AbstractCommand(ClientConnection &clientConnection, FileSystemManager &fileSystemManager)
+                : clientConnection(clientConnection), fileSystemManager(fileSystemManager) {};
 
-        ClientConnection& clientConnection;
+        ClientConnection &clientConnection;
+
+        FileSystemManager &fileSystemManager;
     };
 
     template<class C>
