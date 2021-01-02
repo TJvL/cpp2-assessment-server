@@ -32,7 +32,7 @@ namespace cpp2 {
         return stream;
     }
 
-    void ClientConnection::pipeStreamTillEnd(std::istream &inputStream) {
+    void ClientConnection::pipeStreamTillEnd(const std::istream &inputStream) {
         stream << inputStream.rdbuf();
     }
 }

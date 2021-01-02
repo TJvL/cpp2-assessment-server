@@ -17,7 +17,7 @@ namespace cpp2 {
             throw std::logic_error{ERROR_NO_PERMISSION};
         }
 
-        auto inputStream = fileSystemManager.openReadFileStream(relativePath);
+        const auto inputStream = fileSystemManager.openReadFileStream(relativePath);
 
         const auto fileSize = fileSystemManager.fileSize(relativePath);
         clientConnection.sentOutgoingMessage(std::to_string(fileSize));

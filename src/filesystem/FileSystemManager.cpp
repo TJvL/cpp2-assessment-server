@@ -62,7 +62,7 @@ namespace cpp2 {
         return listing;
     }
 
-    void FileSystemManager::writeFileFromStream(const std::filesystem::path &relativePath, std::istream &inputStream, unsigned long readSize) const {
+    void FileSystemManager::writeFileFromStream(const std::filesystem::path &relativePath, std::istream &inputStream, const unsigned long readSize) const {
         std::ofstream writeStream{rootSyncPath / relativePath, std::ifstream::out | std::ifstream::binary};
         writeStream.exceptions(std::ifstream::badbit);
 
@@ -71,7 +71,7 @@ namespace cpp2 {
                     std::ostreambuf_iterator<char>(writeStream));
     }
 
-    std::unique_ptr<std::istream> FileSystemManager::openReadFileStream(const std::filesystem::path &relativePath) const {
+    std::unique_ptr<const std::istream> FileSystemManager::openReadFileStream(const std::filesystem::path &relativePath) const {
         auto readStream = std::make_unique<std::ifstream>(rootSyncPath / relativePath, std::ifstream::in | std::ifstream::binary);
         readStream->exceptions(std::ifstream::badbit);
         return readStream;

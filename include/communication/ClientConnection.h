@@ -16,7 +16,7 @@ namespace cpp2 {
 
         std::istream & getIncomingStream();
 
-        void pipeStreamTillEnd(std::istream& inputStream);
+        void pipeStreamTillEnd(const std::istream& inputStream);
 
     private:
         asio::io_context ioContext;
