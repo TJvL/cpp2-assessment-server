@@ -9,24 +9,24 @@
 #include "../../include/commands/implementations/CloseConnectionCommand.h"
 
 namespace cpp2 {
-    std::unique_ptr<AbstractCommand> CommandFactory::createCommand(const CommandName commandName, ClientConnection& clientConnection, FileSystemManager &fileSystemManager) const {
+    std::unique_ptr<AbstractCommand> CommandFactory::createCommand(const CommandName commandName) const {
         switch (commandName) {
             case SERVER_INFORMATION:
-                return CommandFactory::create<ServerInformationCommand>(clientConnection, fileSystemManager);
+                return CommandFactory::create<ServerInformationCommand>();
             case LIST_DIRECTORY:
-                return CommandFactory::create<ListDirectoryCommand>(clientConnection, fileSystemManager);
+                return CommandFactory::create<ListDirectoryCommand>();
             case MAKE_DIRECTORY:
-                return CommandFactory::create<MakeDirectoryCommand>(clientConnection, fileSystemManager);
+                return CommandFactory::create<MakeDirectoryCommand>();
             case DOWNLOAD_FILE:
-                return CommandFactory::create<DownloadFileCommand>(clientConnection, fileSystemManager);
+                return CommandFactory::create<DownloadFileCommand>();
             case UPLOAD_FILE:
-                return CommandFactory::create<UploadFileCommand>(clientConnection, fileSystemManager);
+                return CommandFactory::create<UploadFileCommand>();
             case RENAME:
-                return CommandFactory::create<RenameCommand>(clientConnection, fileSystemManager);
+                return CommandFactory::create<RenameCommand>();
             case DELETE:
-                return CommandFactory::create<DeleteCommand>(clientConnection, fileSystemManager);
+                return CommandFactory::create<DeleteCommand>();
             case CLOSE_CONNECTION:
-                return CommandFactory::create<CloseConnectionCommand>(clientConnection, fileSystemManager);
+                return CommandFactory::create<CloseConnectionCommand>();
             default:
                 throw std::runtime_error("the given command name has no implementation");
         }

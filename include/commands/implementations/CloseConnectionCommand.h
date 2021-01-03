@@ -6,11 +6,7 @@
 namespace cpp2 {
     class CloseConnectionCommand : public AbstractCommand {
     public:
-        explicit CloseConnectionCommand(ClientConnection& clientConnection, FileSystemManager &syncManager);
-
-        ~CloseConnectionCommand() override = default;
-
-        bool execute() override;
+        bool execute(ClientConnection &clientConnection, FileSystemManager &fileSystemManager) override;
     };
 }
 

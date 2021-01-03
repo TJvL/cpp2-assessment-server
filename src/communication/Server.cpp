@@ -20,8 +20,8 @@ namespace cpp2 {
                 const auto message = clientConnection.waitForIncomingMessage();
                 std::cout << "client sent command: " << message << NEW_LINE;
                 const auto commandName = commandMapper.getCommandName(message);
-                auto command = commandFactory.createCommand(commandName, clientConnection, fileSystemManager);
-                handlingConnection = command->execute();
+                auto command = commandFactory.createCommand(commandName);
+                handlingConnection = command->execute(clientConnection, fileSystemManager);
             } catch (const std::logic_error &error) {
                 const auto response = error.what();
                 std::cout << "sent client error response: " << response << NEW_LINE;

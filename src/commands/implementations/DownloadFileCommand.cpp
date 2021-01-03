@@ -3,10 +3,8 @@
 #include "../../../include/Constants.h"
 
 namespace cpp2 {
-    DownloadFileCommand::DownloadFileCommand(cpp2::ClientConnection &clientConnection, FileSystemManager &syncManager)
-            : AbstractCommand(clientConnection, syncManager) {}
 
-    bool DownloadFileCommand::execute() {
+    bool DownloadFileCommand::execute(ClientConnection &clientConnection, FileSystemManager &fileSystemManager) {
         const auto relativePath = clientConnection.waitForIncomingMessage();
 
         if (!fileSystemManager.pathExists(relativePath)) {

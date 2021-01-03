@@ -2,10 +2,8 @@
 #include "../../../include/Constants.h"
 
 namespace cpp2 {
-    DeleteCommand::DeleteCommand(ClientConnection &clientConnection, FileSystemManager &syncManager)
-            : AbstractCommand(clientConnection, syncManager) {}
 
-    bool DeleteCommand::execute() {
+    bool DeleteCommand::execute(ClientConnection &clientConnection, FileSystemManager &fileSystemManager) {
         const auto relativePath = clientConnection.waitForIncomingMessage();
 
         if (!fileSystemManager.pathExists(relativePath)) {

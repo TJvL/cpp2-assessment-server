@@ -6,11 +6,7 @@
 namespace cpp2 {
     class DownloadFileCommand : public AbstractCommand {
     public:
-        explicit DownloadFileCommand(ClientConnection& clientConnection, FileSystemManager &syncManager);
-
-        ~DownloadFileCommand() override = default;
-
-        bool execute() override;
+        bool execute(ClientConnection &clientConnection, FileSystemManager &fileSystemManager) override;
     };
 }
 

@@ -4,10 +4,7 @@
 
 namespace cpp2 {
 
-    UploadFileCommand::UploadFileCommand(ClientConnection &clientConnection, FileSystemManager &syncManager)
-            : AbstractCommand(clientConnection, syncManager) {}
-
-    bool UploadFileCommand::execute() {
+    bool UploadFileCommand::execute(ClientConnection &clientConnection, FileSystemManager &fileSystemManager) {
         const auto relativePath = clientConnection.waitForIncomingMessage();
         const auto fileSize = std::stoul(clientConnection.waitForIncomingMessage());
 

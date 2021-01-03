@@ -2,10 +2,8 @@
 #include "../../../include/Constants.h"
 
 namespace cpp2 {
-    ListDirectoryCommand::ListDirectoryCommand(ClientConnection &clientConnection, FileSystemManager &syncManager)
-    : AbstractCommand(clientConnection, syncManager) {}
 
-    bool ListDirectoryCommand::execute() {
+    bool ListDirectoryCommand::execute(ClientConnection &clientConnection, FileSystemManager &fileSystemManager) {
         const auto relativePath = clientConnection.waitForIncomingMessage();
 
         if (!fileSystemManager.pathExists(relativePath)) {

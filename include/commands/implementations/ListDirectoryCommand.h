@@ -6,11 +6,7 @@
 namespace cpp2 {
     class ListDirectoryCommand : public AbstractCommand {
     public:
-        explicit ListDirectoryCommand(ClientConnection& clientConnection, FileSystemManager &syncManager);
-
-        ~ListDirectoryCommand() override = default;
-
-        bool execute() override;
+        bool execute(ClientConnection &clientConnection, FileSystemManager &fileSystemManager) override;
     };
 }
 

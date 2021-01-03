@@ -3,10 +3,7 @@
 
 namespace cpp2 {
 
-    RenameCommand::RenameCommand(ClientConnection &clientConnection, FileSystemManager &syncManager)
-            : AbstractCommand(clientConnection, syncManager) {}
-
-    bool RenameCommand::execute() {
+    bool RenameCommand::execute(ClientConnection &clientConnection, FileSystemManager &fileSystemManager) {
         const auto relativePath = clientConnection.waitForIncomingMessage();
         const auto newName = clientConnection.waitForIncomingMessage();
 
