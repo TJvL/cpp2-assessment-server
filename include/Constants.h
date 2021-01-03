@@ -6,6 +6,7 @@
 #define WELCOME_RESPONSE "Welcome to AvanSync server"
 #define INFO_RESPONSE "AvanSync server 1.0 copyright (c) 2020 Thomas Jan van Leeuwen"
 #define OK_RESPONSE "OK"
+#define ERROR_NO_SUCH_PATH "Error: no such file or directory"
 #define ERROR_NO_SUCH_FILE "Error: no such file"
 #define ERROR_NO_SUCH_DIRECTORY "Error: no such directory"
 #define ERROR_NO_PERMISSION "Error: no permission"

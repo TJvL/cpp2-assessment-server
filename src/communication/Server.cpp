@@ -12,14 +12,14 @@ namespace cpp2 {
         ClientConnection clientConnection{serverPort};
 
         std::cout << "the client has connected" << NEW_LINE;
-        clientConnection.sentOutgoingMessage(std::string(WELCOME_RESPONSE));
+        clientConnection.sentOutgoingMessage(WELCOME_RESPONSE);
 
         auto handlingConnection = true;
         while (handlingConnection) {
             try {
-                auto message = clientConnection.waitForIncomingMessage();
+                const auto message = clientConnection.waitForIncomingMessage();
                 std::cout << "client sent command: " << message << NEW_LINE;
-                auto commandName = commandMapper.getCommandName(message);
+                const auto commandName = commandMapper.getCommandName(message);
                 auto command = commandFactory.createCommand(commandName, clientConnection, fileSystemManager);
                 handlingConnection = command->execute();
             } catch (const std::logic_error &error) {

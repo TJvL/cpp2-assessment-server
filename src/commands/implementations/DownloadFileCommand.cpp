@@ -7,7 +7,7 @@ namespace cpp2 {
             : AbstractCommand(clientConnection, syncManager) {}
 
     bool DownloadFileCommand::execute() {
-        auto relativePath = clientConnection.waitForIncomingMessage();
+        const auto relativePath = clientConnection.waitForIncomingMessage();
 
         if (!fileSystemManager.pathExists(relativePath)) {
             throw std::logic_error{ERROR_NO_SUCH_FILE};

@@ -6,9 +6,9 @@
 namespace cpp2 {
     class ClientConnection {
     public:
-        explicit ClientConnection(int listenPort);
+        ClientConnection(int listenPort);
 
-        virtual ~ClientConnection();
+        ~ClientConnection();
 
         std::string waitForIncomingMessage();
 

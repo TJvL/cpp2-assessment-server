@@ -9,24 +9,24 @@
 #include "../../include/commands/implementations/CloseConnectionCommand.h"
 
 namespace cpp2 {
-    std::unique_ptr<AbstractCommand> CommandFactory::createCommand(CommandName commandName, ClientConnection& clientConnection, FileSystemManager &syncManager) const {
+    std::unique_ptr<AbstractCommand> CommandFactory::createCommand(const CommandName commandName, ClientConnection& clientConnection, FileSystemManager &fileSystemManager) const {
         switch (commandName) {
             case SERVER_INFORMATION:
-                return std::move(CommandFactory::create<ServerInformationCommand>(clientConnection, syncManager));
+                return CommandFactory::create<ServerInformationCommand>(clientConnection, fileSystemManager);
             case LIST_DIRECTORY:
-                return std::move(CommandFactory::create<ListDirectoryCommand>(clientConnection, syncManager));
+                return CommandFactory::create<ListDirectoryCommand>(clientConnection, fileSystemManager);
             case MAKE_DIRECTORY:
-                return std::move(CommandFactory::create<MakeDirectoryCommand>(clientConnection, syncManager));
+                return CommandFactory::create<MakeDirectoryCommand>(clientConnection, fileSystemManager);
             case DOWNLOAD_FILE:
-                return std::move(CommandFactory::create<DownloadFileCommand>(clientConnection, syncManager));
+                return CommandFactory::create<DownloadFileCommand>(clientConnection, fileSystemManager);
             case UPLOAD_FILE:
-                return std::move(CommandFactory::create<UploadFileCommand>(clientConnection, syncManager));
+                return CommandFactory::create<UploadFileCommand>(clientConnection, fileSystemManager);
             case RENAME:
-                return std::move(CommandFactory::create<RenameCommand>(clientConnection, syncManager));
+                return CommandFactory::create<RenameCommand>(clientConnection, fileSystemManager);
             case DELETE:
-                return std::move(CommandFactory::create<DeleteCommand>(clientConnection, syncManager));
+                return CommandFactory::create<DeleteCommand>(clientConnection, fileSystemManager);
             case CLOSE_CONNECTION:
-                return std::move(CommandFactory::create<CloseConnectionCommand>(clientConnection, syncManager));
+                return CommandFactory::create<CloseConnectionCommand>(clientConnection, fileSystemManager);
             default:
                 throw std::runtime_error("the given command name has no implementation");
         }

@@ -27,8 +27,7 @@ set(INCLUDES
         include/filesystem/FileSystemManager.h
         include/filesystem/FileInfo.h
         include/filesystem/FileType.h
-        include/filesystem/FileTypeMapper.h
-        )
+        include/filesystem/FileTypeMapper.h)
 
 set(SOURCE_FILES
         src/Main.cpp
@@ -45,11 +44,10 @@ set(SOURCE_FILES
         src/commands/implementations/MakeDirectoryCommand.cpp
         src/commands/implementations/CloseConnectionCommand.cpp
         src/filesystem/FileSystemManager.cpp
-        )
+        src/filesystem/FileInfo.cpp)
 
 add_executable(Cpp2Server
         ${INCLUDES}
-        ${SOURCE_FILES}
-        )
+        ${SOURCE_FILES})
 
 target_link_libraries(Cpp2Server PRIVATE Threads::Threads)

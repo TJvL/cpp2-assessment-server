@@ -6,14 +6,13 @@ namespace cpp2 {
     : AbstractCommand(clientConnection, syncManager) {}
 
     bool ListDirectoryCommand::execute() {
-        auto relativePath = clientConnection.waitForIncomingMessage();
+        const auto relativePath = clientConnection.waitForIncomingMessage();
 
-        if (fileSystemManager.pathExists(relativePath)) {
+        if (!fileSystemManager.pathExists(relativePath)) {
             throw std::logic_error{ERROR_NO_SUCH_DIRECTORY};
         }
 
-        auto listing = fileSystemManager.listDirectoryInformation(relativePath);
-
+        const auto listing = fileSystemManager.listDirectoryInformation(relativePath);
         clientConnection.sentOutgoingMessage(std::to_string(listing.size()));
 
         for (const auto &fileInfo : listing) {

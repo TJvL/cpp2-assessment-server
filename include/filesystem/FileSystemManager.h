@@ -20,6 +20,10 @@ namespace cpp2 {
 
         bool pathExists(const std::filesystem::path &relativePath) const;
 
+        bool refersToFile(const std::filesystem::path &relativePath) const;
+
+        bool refersToDirectory(const std::filesystem::path &relativePath) const;
+
         unsigned long fileSize(const std::filesystem::path &relativePath) const;
 
         void makeDirectory(const std::filesystem::path &relativePath, const std::string &directoryName) const;
@@ -35,6 +39,9 @@ namespace cpp2 {
         std::unique_ptr<const std::istream> openReadFileStream(const std::filesystem::path &relativePath) const;
 
     private:
+        template <typename TP>
+        static std::time_t timeConvert(TP time);
+
         const std::filesystem::path rootSyncPath;
     };
 }
