@@ -21,6 +21,6 @@ int main(int argc, char *argv[]) {
         syncDirectoryName = argv[2];
     }
 
-    cpp2::Application application{port, syncDirectoryName};
+    const cpp2::Application application{port, syncDirectoryName};
     return application.run();
 }

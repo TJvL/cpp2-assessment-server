@@ -9,7 +9,7 @@
 #include "../../include/commands/implementations/CloseConnectionCommand.h"
 
 namespace cpp2 {
-    std::unique_ptr<AbstractCommand> CommandFactory::createCommand(const CommandName commandName) const {
+    std::unique_ptr<const AbstractCommand> CommandFactory::createCommand(const CommandName commandName) const {
         switch (commandName) {
             case SERVER_INFORMATION:
                 return CommandFactory::create<ServerInformationCommand>();

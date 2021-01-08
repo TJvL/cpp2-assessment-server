@@ -9,15 +9,13 @@ namespace cpp2 {
     public:
         Server(const int serverPort, const std::string &syncDirectoryPath);
 
-        virtual ~Server() = default;
-
         void handleClientConnection() const;
 
     private:
         const int serverPort;
-        const std::filesystem::path syncDirectoryPath;
-        CommandFactory commandFactory;
-        CommandMapper commandMapper;
+        const FileSystemManager fileSystemManager;
+        const CommandFactory commandFactory;
+        const CommandMapper commandMapper;
     };
 }
 

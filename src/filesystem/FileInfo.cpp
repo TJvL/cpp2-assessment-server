@@ -1,9 +1,13 @@
 #include <ctime>
+#include <utility>
 #include <vector>
 #include <sstream>
 #include "../../include/filesystem/FileInfo.h"
 
 namespace cpp2 {
+
+    FileInfo::FileInfo(std::string  fileName, const unsigned long fileSize, const std::time_t lastModified, const FileType fileType)
+            : fileName(std::move(fileName)), fileSize(fileSize), fileType(fileType), lastModified(lastModified) {}
 
     std::string FileInfo::toString() const {
         std::vector<char> buffer(20);

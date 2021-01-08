@@ -10,13 +10,21 @@ namespace cpp2 {
 
         ~ClientConnection();
 
+        ClientConnection(const ClientConnection &other) = delete;
+
+        ClientConnection(ClientConnection &&other) = delete;
+
+        ClientConnection &operator=(const ClientConnection &other) = delete;
+
+        ClientConnection &operator=(ClientConnection &&other) = delete;
+
         std::string waitForIncomingMessage();
 
         void sentOutgoingMessage(const std::string &message);
 
-        std::istream & getIncomingStream();
+        std::istream &getIncomingStream();
 
-        void pipeStreamTillEnd(const std::istream& inputStream);
+        void pipeStreamTillEnd(const std::istream &inputStream);
 
     private:
         asio::io_context ioContext;

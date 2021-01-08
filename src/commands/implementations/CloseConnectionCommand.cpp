@@ -4,7 +4,7 @@
 
 namespace cpp2 {
 
-    bool CloseConnectionCommand::execute(ClientConnection &clientConnection, FileSystemManager &fileSystemManager) {
+    bool CloseConnectionCommand::execute(ClientConnection &clientConnection, const FileSystemManager &fileSystemManager) const {
         std::cout << "client has disconnected" << NEW_LINE;
         return false;
     }

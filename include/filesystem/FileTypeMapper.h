@@ -2,7 +2,7 @@
 #define CPP2SERVER_FILETYPEMAPPER_H
 
 namespace cpp2 {
-    FileType getFileType(std::filesystem::file_type fileType) {
+    FileType getFileType(const std::filesystem::file_type fileType) {
         switch (fileType) {
             case std::filesystem::file_type::regular:
                 return FileType::FILE;

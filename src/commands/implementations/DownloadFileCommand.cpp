@@ -4,7 +4,7 @@
 
 namespace cpp2 {
 
-    bool DownloadFileCommand::execute(ClientConnection &clientConnection, FileSystemManager &fileSystemManager) {
+    bool DownloadFileCommand::execute(ClientConnection &clientConnection, const FileSystemManager &fileSystemManager) const {
         const auto relativePath = clientConnection.waitForIncomingMessage();
 
         if (!fileSystemManager.pathExists(relativePath)) {

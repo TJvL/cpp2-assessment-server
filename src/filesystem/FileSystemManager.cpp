@@ -3,6 +3,7 @@
 #include "../../include/filesystem/FileTypeMapper.h"
 
 using namespace std::chrono_literals;
+using namespace std::chrono;
 
 namespace cpp2 {
     FileSystemManager::FileSystemManager(const std::string &syncDirectoryName)
@@ -57,18 +58,18 @@ namespace cpp2 {
         std::filesystem::rename(oldPath, newPath);
     }
 
-    std::vector<FileInfo> FileSystemManager::listDirectoryInformation(const std::filesystem::path &relativePath) const {
-        std::vector<FileInfo> listing;
+    std::unique_ptr<std::vector<FileInfo>> FileSystemManager::listDirectoryInformation(const std::filesystem::path &relativePath) const {
+        auto listing = std::make_unique<std::vector<FileInfo>>();
         for (const auto &entry : std::filesystem::directory_iterator(rootSyncPath / relativePath)) {
-            auto fileName = entry.path().filename().c_str();
-            auto fileType = getFileType(entry.status().type());
+            const auto fileName = entry.path().filename().c_str();
+            const auto fileType = getFileType(entry.status().type());
             unsigned long fileSize{0};
             if (fileType == FILE) {
                 fileSize = entry.file_size();
             }
             const auto time = entry.last_write_time();
-            const std::time_t lastModified = timeConvert<decltype(time)>(time);
-            listing.emplace_back(fileName, fileSize, lastModified, fileType);
+            const auto lastModified = timeConvert<decltype(time)>(time);
+            listing->emplace_back(fileName, fileSize, lastModified, fileType);
         }
 
         return listing;
@@ -81,6 +82,10 @@ namespace cpp2 {
         std::copy_n(std::istreambuf_iterator<char>(inputStream),
                     readSize,
                     std::ostreambuf_iterator<char>(writeStream));
+
+        inputStream.ignore(1);
+
+        writeStream.close();
     }
 
     std::unique_ptr<const std::istream> FileSystemManager::openReadFileStream(const std::filesystem::path &relativePath) const {
@@ -90,9 +95,8 @@ namespace cpp2 {
     }
 
     template<typename T>
-    std::time_t FileSystemManager::timeConvert(T time) {
-        using namespace std::chrono;
-        auto newTimePoint = time_point_cast<system_clock::duration>(time - T::clock::now() + system_clock::now());
+    std::time_t FileSystemManager::timeConvert(const T time) {
+        const auto newTimePoint = time_point_cast<system_clock::duration>(time - T::clock::now() + system_clock::now());
         return system_clock::to_time_t(newTimePoint);
     }
 }

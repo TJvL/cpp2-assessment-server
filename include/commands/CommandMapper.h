@@ -20,8 +20,6 @@ namespace cpp2 {
                                      {"QUIT",  CommandName::CLOSE_CONNECTION}
                              }) {};
 
-        ~CommandMapper() = default;
-
         const CommandName &getCommandName(const std::string &name) const {
             try {
                 return commandMap.at(name);

@@ -10,8 +10,6 @@ namespace cpp2 {
     public:
         FileSystemManager(const std::string &syncDirectoryName = "sync");
 
-        virtual ~FileSystemManager() = default;
-
         unsigned long freeSpaceAvailable(const std::filesystem::path &relativePath) const;
 
         bool hasReadPermissions(const std::filesystem::path &relativePath) const;
@@ -32,7 +30,7 @@ namespace cpp2 {
 
         void renamePath(const std::filesystem::path &relativePath, const std::string& newName) const;
 
-        std::vector<FileInfo> listDirectoryInformation(const std::filesystem::path &relativePath) const;
+        std::unique_ptr<std::vector<FileInfo>> listDirectoryInformation(const std::filesystem::path &relativePath) const;
 
         void writeFileFromStream(const std::filesystem::path &relativePath, std::istream &inputStream, const unsigned long readSize) const;
 

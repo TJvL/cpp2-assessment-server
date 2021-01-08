@@ -7,10 +7,7 @@
 namespace cpp2 {
     class FileInfo {
     public:
-        FileInfo(const std::string& fileName, const unsigned long fileSize, const std::time_t lastModified, const FileType fileType)
-                : fileName(fileName), fileSize(fileSize), fileType(fileType), lastModified(lastModified) {}
-
-        virtual ~FileInfo() = default;
+        FileInfo(std::string fileName, const unsigned long fileSize, const std::time_t lastModified, const FileType fileType);
 
         std::string toString() const;
 

@@ -3,7 +3,7 @@
 
 namespace cpp2 {
 
-    bool MakeDirectoryCommand::execute(ClientConnection &clientConnection, FileSystemManager &fileSystemManager) {
+    bool MakeDirectoryCommand::execute(ClientConnection &clientConnection, const FileSystemManager &fileSystemManager) const {
         const auto relativePath = clientConnection.waitForIncomingMessage();
         const auto directoryName = clientConnection.waitForIncomingMessage();
 

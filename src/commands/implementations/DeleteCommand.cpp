@@ -3,7 +3,7 @@
 
 namespace cpp2 {
 
-    bool DeleteCommand::execute(ClientConnection &clientConnection, FileSystemManager &fileSystemManager) {
+    bool DeleteCommand::execute(ClientConnection &clientConnection, const FileSystemManager &fileSystemManager) const {
         const auto relativePath = clientConnection.waitForIncomingMessage();
 
         if (!fileSystemManager.pathExists(relativePath)) {

@@ -3,7 +3,7 @@
 
 namespace cpp2 {
 
-    bool ServerInformationCommand::execute(ClientConnection &clientConnection, FileSystemManager &fileSystemManager) {
+    bool ServerInformationCommand::execute(ClientConnection &clientConnection, const FileSystemManager &fileSystemManager) const {
         clientConnection.sentOutgoingMessage(INFO_RESPONSE);
         return true;
     }

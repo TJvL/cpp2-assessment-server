@@ -28,7 +28,7 @@ namespace cpp2 {
         stream << message << RETURN_NEW_LINE;
     }
 
-    std::istream& ClientConnection::getIncomingStream() {
+    std::istream &ClientConnection::getIncomingStream() {
         return stream;
     }
 
