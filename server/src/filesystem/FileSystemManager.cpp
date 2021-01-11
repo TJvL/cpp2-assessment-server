@@ -76,8 +76,8 @@ namespace cpp2 {
     }
 
     void FileSystemManager::writeFileFromStream(const std::filesystem::path &relativePath, std::istream &inputStream, const unsigned long readSize) const {
-        std::ofstream writeStream{rootSyncPath / relativePath, std::ifstream::out | std::ifstream::binary};
-        writeStream.exceptions(std::ifstream::badbit);
+        std::ofstream writeStream{rootSyncPath / relativePath, std::ofstream::out | std::ofstream::binary};
+        writeStream.exceptions(std::ofstream::badbit);
 
         std::copy_n(std::istreambuf_iterator<char>(inputStream),
                     readSize,

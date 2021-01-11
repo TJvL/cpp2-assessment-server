@@ -6,7 +6,7 @@
 namespace cpp2 {
     class Application {
     public:
-        Application(const int port, const std::string &syncDirectoryName);
+        Application(const int port, const std::string &syncDirectoryName, const bool canRemoteTerminate = false);
 
         int run() const;
 

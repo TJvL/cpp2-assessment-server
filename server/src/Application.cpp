@@ -3,8 +3,8 @@
 #include "../include/Constants.h"
 
 namespace cpp2 {
-    Application::Application(const int port, const std::string &syncDirectoryName)
-            : server(port, syncDirectoryName) {}
+    Application::Application(const int port, const std::string &syncDirectoryName, const bool canRemoteTerminate)
+            : server(port, syncDirectoryName, canRemoteTerminate) {}
 
     int Application::run() const {
         auto result = EXIT_SUCCESS;
@@ -12,6 +12,10 @@ namespace cpp2 {
         while (running) {
             try {
                 server.handleClientConnection();
+            } catch (const TerminationException &terminationException) {
+                std::cout << terminationException.what() << NEW_LINE;
+                result = REMOTE_TERMINATION_EXIT;
+                running = false;
             } catch (const std::runtime_error &error) {
                 std::cout << "error: " << error.what() << NEW_LINE;
                 continue;

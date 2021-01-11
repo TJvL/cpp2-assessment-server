@@ -5,9 +5,19 @@
 #include "../commands/CommandMapper.h"
 
 namespace cpp2 {
+    class TerminationException : public std::exception {
+    public:
+        TerminationException() : message("terminating server by remote command") {}
+        const char* what() const noexcept override {
+            return message.c_str();
+        }
+    private:
+        std::string message;
+    };
+
     class Server {
     public:
-        Server(const int serverPort, const std::string &syncDirectoryPath);
+        Server(const int serverPort, const std::string &syncDirectoryPath, const bool canRemoteTerminate);
 
         void handleClientConnection() const;
 
@@ -16,6 +26,7 @@ namespace cpp2 {
         const FileSystemManager fileSystemManager;
         const CommandFactory commandFactory;
         const CommandMapper commandMapper;
+        const bool canRemoteTerminate;
     };
 }
 

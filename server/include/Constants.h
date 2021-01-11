@@ -12,5 +12,7 @@
 #define ERROR_NO_PERMISSION "Error: no permission"
 #define ERROR_INVALID_PATH "Error: invalid path"
 #define ERROR_NOT_ENOUGH_DISK_SPACE "Error: not enough disk space"
+#define REMOTE_TERMINATION "REMOTE_TERMINATION"
+#define REMOTE_TERMINATION_EXIT 500
 
 #endif //CPP2SERVER_CONSTANTS_H

@@ -3,7 +3,7 @@
 
 #include <filesystem>
 #include <vector>
-#include "../../include/filesystem/FileInfo.h"
+#include "FileInfo.h"
 
 namespace cpp2 {
     class FileSystemManager {
