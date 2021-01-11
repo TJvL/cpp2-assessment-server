@@ -8,16 +8,6 @@ namespace cpp2 {
     public:
         ClientConnection(int listenPort);
 
-        ~ClientConnection();
-
-        ClientConnection(const ClientConnection &other) = delete;
-
-        ClientConnection(ClientConnection &&other) = delete;
-
-        ClientConnection &operator=(const ClientConnection &other) = delete;
-
-        ClientConnection &operator=(ClientConnection &&other) = delete;
-
         std::string waitForIncomingMessage();
 
         void sentOutgoingMessage(const std::string &message);

@@ -7,10 +7,6 @@ namespace cpp2 {
         acceptor.accept(stream.socket());
     }
 
-    ClientConnection::~ClientConnection() {
-        stream.close();
-    }
-
     std::string ClientConnection::waitForIncomingMessage() {
         std::string message;
         getline(stream, message);
