@@ -45,7 +45,12 @@ set(SOURCE_FILES
         ../server/src/filesystem/FileSystemManager.cpp
         ../server/src/filesystem/FileInfo.cpp)
 
-set(TEST_FILES Tests.cpp)
+set(TEST_FILES
+        Tests.cpp
+        TestServerConnection.h
+        TestServerConnection.cpp
+        TestClientFixture.h
+        TestClientFixture.cpp)
 
 add_executable(server_tests
         ${TEST_FILES}
